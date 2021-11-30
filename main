@@ -5,7 +5,7 @@
 using namespace std;
 
 //Составить список группы. Для каждого студента указать имя, фамилию, отчество, год поступления, группу, оценки по 4 предметам.
-//Запрос: распечатать фамилию и имя студента, имеющего максимальный сред- ний балл среди студентов указанной группы.
+//Запрос: распечатать фамилию и имя студента, имеющего максимальный средний балл среди студентов указанной группы.
 
 int option;
 
@@ -24,9 +24,9 @@ int Menu() {
 }
 
 struct Student{
-    char surname[40];
-    char name[40];
-    char patronymic[40];
+    char surname[15];
+    char name[15];
+    char patronymic[15];
     int year_enter{};
     char group[10];
     int rate_first_subject{},
@@ -47,6 +47,7 @@ void Data_Entery(Student* (&d), int& n ){
 
         cout <<"Введите Фамилию, Имя и Отчество студента через Enter:  " << endl;
         cin >> d[i].surname;
+
         cin >> d[i].name;
         cin >> d[i].patronymic;
 
@@ -56,17 +57,37 @@ void Data_Entery(Student* (&d), int& n ){
         cout << "Введите группу в которой состоит учащийся"<< endl;
         cin >> d[i].group;
 
-        cout << "Введите оценки по Высокоуровневому программированию:  " << endl;
+        cout << "Введите оценки по предмету 1:  " << endl;
         cin >>d[i].rate_first_subject;
+        while(d[i].rate_first_subject>=6 || d[i].rate_first_subject<=1){
+            cout << "Ошибка! Введите корректное значение оценки : " << endl;
+            cin >>d[i].rate_first_subject;
 
-        cout << "Введите оценки по культурологии, аналитической геометрии и мат. анализу: " << endl;
+        }
+
+        cout << "Введите оценки по предмету 2: " << endl;
         cin >>d[i].rate_second_subject;
+        while(d[i].rate_second_subject>=6 || d[i].rate_second_subject<=1){
+            cout << "Ошибка! Введите корректное значение оценки : " << endl;
+            cin >>d[i].rate_second_subject;
 
-        cout << "Введите оценки по аналитической геометрии:  " << endl;
+        }
+
+        cout << "Введите оценки по предмету 3:  " << endl;
         cin >>d[i].rate_third_subject;
+        while(d[i].rate_third_subject>=6 || d[i].rate_third_subject<=1){
+            cout << "Ошибка! Введите корректное значение оценки : " << endl;
+            cin >>d[i].rate_third_subject;
 
-        cout << "Введите оценки по математическому анализу: " << endl;
+        }
+
+        cout << "Введите оценки по предмету 4: " << endl;
         cin >>d[i].rate_forth_subject;
+        while(d[i].rate_forth_subject>=6 || d[i].rate_forth_subject<=1){
+            cout << "Ошибка! Введите корректное значение оценки : " << endl;
+            cin >>d[i].rate_forth_subject;
+
+        }
         cout << "____________________________________________________________________________" << endl;
     }
 
@@ -74,43 +95,38 @@ void Data_Entery(Student* (&d), int& n ){
 }
 
 void Print(Student* d, int n){
-      cout <<fixed<<setw(10)<< "Данные № " <<setw(10)<< "|Фамилия    " <<setw(10)<< "|Имя      " <<setw(13)<< "|Отчество    " <<setw(16)<< "|Год поступления" <<setw(11)<< "|Группа   " <<setw(35)<< "|Высокоуровневое программирование   " <<setw(17)<< "|Культурология    " <<setw(20)<< "|Аналит. геометрия   " <<setw(15)<< "|Математ. анализ     " << endl;
-//    printf ("%-10s|", "Данные № ");
-//    printf ("%-10s|", "Фамилия    ");
-//    printf ("%-10s|", "Имя      "  );
-//    printf ("%-10s|", "Отчество    ");
-//    printf ("%-16s|", "Год поступления");
-//    printf ("%-11s|", "Группа   " );
-//    printf ("%-35s|", "Высокоуровневое программирование" );
-//    printf ("%-17s|", "Культурология    " );
-//    printf ("%-20s|", "Аналит. геометрия   " );
-//    printf ("%-15s|", "Математ. анализ     "  );
- //   printf("%-25s%-20s%-10s%-10s%-10s%-25s%-20s%-10s%-10s%-10s\n", "Данные № ", "Фамилия", "Имя", "Отчество", "Год поступления", "Группа", "ВП", "Культурология", "Аналит. геометрия", "Математ. анализ");
+ //     cout <<fixed<<setw(10)<< "Данные № " <<setw(10)<< "|Фамилия    " <<setw(10)<< "|Имя      " <<setw(10)<< "|Отчество    " <<setw(16)<< "|Год поступления" <<setw(11)<< "|Группа   " <<setw(35)<< "|Предмет 1   " <<setw(17)<< "|Предмет 2    " <<setw(20)<< "|Предмет 3   " <<setw(15)<< "|Предмет 4     " << endl;
+//    printf("%-25s%-20s%-10s%-10s%-10s%-25s%-20s%-10s%-10s%-10s\n", "Данные № ", "Фамилия", "Имя", "Отчество", "Год поступления", "Группа", "ВП", "Культурология", "Аналит. геометрия", "Математ. анализ");
+
+    cout << fixed << left <<setw(10)<< "Данные № "<< "|";
+    cout<<setw(20)<< "Фамилия      "  << "|";
+    cout <<setw(20)<<"Имя          "<< "|";
+    cout<<setw(20)<< "Отчество     "<< "|";
+    cout<<setw(10)<< "Год поступления "<< "|";
+    cout <<setw(20)<<"Группа   " << "|";
+    cout <<setw(20)<<"Предмет 1   "<< "|";
+    cout <<setw(20)<<"Предмет 2   "<< "|";
+    cout<<setw(20) <<"Предмет 3   "<< "|";
+    cout <<setw(20)<<"Предмет 4   " << endl;
+    cout << endl;
 
     for(int i{}; i<n; i++){
         cout << "____________________________________________________________________________" << endl;
-        cout << fixed << left <<setw(11)<< i+1 << "|"<<setw(13)<< d[i].surname << "|"<<setw(10)<< d[i].name << "|"<<setw(12)<< d[i].patronymic << "|"<<setw(14)<<d[i].year_enter<< "|"<<setw(10)<< d[i].group << "|"<<setw(35)<< d[i].rate_first_subject << "|"<<setw(17)<< d[i].rate_second_subject << "|"<<setw(20)<< d[i].rate_third_subject << "|"<<setw(15)<< d[i].rate_forth_subject << endl;
-//        printf ("%-10d|", i+1 );
-//        printf ("%-10s|", d[i].surname);
-//        printf ("%-10s|", d[i].name );
-//        printf ("%-10s|", d[i].patronymic);
-//        printf ("%-16d|", d[i].year_enter );
-//        printf ("%-11s|", d[i].group );
-//        printf ("%-35d|", d[i].rate_first_subject );
-//        printf ("%-17d|", d[i].rate_second_subject  );
-//        printf ("%-20d|", d[i].rate_third_subject );
-//        printf ("%-15d|", d[i].rate_forth_subject  );
- //       printf("%-25d%-20s%-10s%-10s%-10d%-25s%-20d%-10d%-10d%-10d\n", i+1, d[i].surname, d[i].name, d[i].patronymic, d[i].year_enter,d[i].group , d[i].rate_first_subject , d[i].rate_second_subject, d[i].rate_third_subject, d[i].rate_forth_subject );
-
-
-
-
+        cout << fixed << left <<setw(9)<< i+1 << "|";
+        cout<<setw(14)<< d[i].surname << "|";
+        cout <<setw(20)<< d[i].name << "|";
+        cout<<setw(20)<< d[i].patronymic << "|";
+        cout<<setw(16)<<d[i].year_enter<< "|";
+        cout <<setw(10)<< d[i].group << "|";
+        cout <<setw(20)<< d[i].rate_first_subject << "|";
+        cout <<setw(20)<< d[i].rate_second_subject << "|";
+        cout<<setw(20)<< d[i].rate_third_subject << "|";
+        cout <<setw(20)<< d[i].rate_forth_subject << endl;
         cout << endl;
         cout << "____________________________________________________________________________" << endl;
     }
 
 }
-
 
 void Data_Change(Student* (&d), int n){
     int _n;
@@ -130,16 +146,16 @@ void Data_Change(Student* (&d), int n){
         cout << "Введите группу в которой состоит учащийся"<< endl;
         cin >> d[i].group;
 
-        cout << "Введите оценки по Высокоуровневому программированию:  " << endl;
+        cout << "Введите оценки по предмету 1:  " << endl;
         cin >>d[i].rate_first_subject;
 
-        cout << "Введите оценки по культурологии, аналитической геометрии и мат. анализу: " << endl;
+        cout << "Введите оценки по предмету 2: " << endl;
         cin >>d[i].rate_second_subject;
 
-        cout << "Введите оценки по аналитической геометрии:  " << endl;
+        cout << "Введите оценки по предмету 3:  " << endl;
         cin >>d[i].rate_third_subject;
 
-        cout << "Введите оценки по математическому анализу: " << endl;
+        cout << "Введите оценки по предмету 4: " << endl;
         cin >>d[i].rate_forth_subject;
 
 
@@ -174,7 +190,6 @@ void Copy_Elements(Student& d_new, Student& d_old){
     d_new.rate_forth_subject=d_old.rate_forth_subject;
 
 }
-
 
 void Delete(Student* (&d), int& n ){
     int _n;
@@ -255,29 +270,123 @@ void Add_Data(Student* (&d), int &n ){
 
 }
 
-void Sorting(Student* d, int n){
+void Sorting(Student* d, int n, int m){
 
     Student Buffer;
 
-    for(int i{}; i<n; i++){
-        for (int j=i+1; j<n; j++ ){
-            if(d[i].surname > d[j].surname){
-                Copy_Elements(Buffer, d[j]);
-                Copy_Elements(d[j], d[i]);
-                Copy_Elements(d[i], Buffer);
+    switch(m){
+        case 1://surname
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].surname > d[j].surname){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
             }
-        }
+            break;
+        case 2:  //name
+
+
+            for(int i{}; i<n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    if (d[i].name > d[j].name) {
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+        case 3: //patronymic
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].patronymic > d[j].patronymic){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        case 4: //year
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].year_enter > d[j].year_enter){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        case 5: //group
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].group > d[j].group){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        case 6: //rate first subject
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].rate_first_subject > d[j].rate_first_subject){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        case 7: // rate 2
+            for(int i{}; i<n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    if (d[i].rate_second_subject > d[j].rate_second_subject) {
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        case 8: //rate 3
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].rate_third_subject > d[j].rate_third_subject){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        case 9: //rate 4
+            for(int i{}; i<n; i++){
+                for (int j=i+1; j<n; j++ ){
+                    if(d[i].rate_forth_subject > d[j].rate_forth_subject){
+                        Copy_Elements(Buffer, d[j]);
+                        Copy_Elements(d[j], d[i]);
+                        Copy_Elements(d[i], Buffer);
+                    }
+                }
+            }
+            break;
+        default:
+            cout << "Такого вида сортировки нет!"<< endl;
 
     }
-    cout << "Данные отсортированы!" << endl;
 
+    cout << "Данные отсортированы!" << endl;
 
 }
 
 int main(){
     int actions{}, amount_of_data{};
     Student* d=new Student[amount_of_data];
-
 
     Menu();
     while(option!=0){
@@ -337,8 +446,7 @@ int main(){
                 }
                 else{
                     int choice{};
-                    cout << "Таблица пуста, но давайте её заполним!" << endl;
-                    cout <<"Если хотите ввести данные больше,чем об одном студенте нажмите 1, если только одного 2"<< endl;
+                    cout << "Таблица пуста, но давайте её заполним!" << endl<<"Если хотите ввести данные больше,чем об одном студенте нажмите 1, если только одного 2"<< endl;
                     cin >> choice;
                     if(choice==1){
                         Add_Data(d, amount_of_data);
@@ -358,7 +466,47 @@ int main(){
                 break;
             case 6: // sorting
                 if(amount_of_data!=0){
-                    Sorting(d, amount_of_data);
+                    int _option{};
+                    cout << "***   Введите по какому критерию осуществить сортировку:  ***"<< endl;
+                    cout << "1 - по фамилии"<< endl;
+                    cout << "2 - по имени"<< endl;
+                    cout << "3 - по отчеству"<< endl;
+                    cout << "4 - по году поступления"<< endl;
+                    cout << "5 - по группе"<< endl;
+                    cout << "6 - по предмету 1 по возрастанию"<< endl;
+                    cout << "7 - по предмету 2 по возрастанию"<< endl;
+                    cout << "8 - по предмету 3 по возрастанию"<< endl;
+                    cout << "9 - по предмету 4 по возрастанию"<< endl;
+                    cin >> _option;
+                    switch(_option){
+                        case 1:
+                            Sorting(d, amount_of_data, 1);
+                            break;
+                        case 2:
+                            Sorting(d, amount_of_data, 2);
+                            break;
+                        case 3:
+                            Sorting(d, amount_of_data, 3);
+                            break;
+                        case 4:
+                            Sorting(d, amount_of_data, 4);
+                            break;
+                        case 5:
+                            Sorting(d, amount_of_data, 5);
+                            break;
+                        case 6:
+                            Sorting(d, amount_of_data, 6);
+                            break;
+                        case 7:
+                            Sorting(d, amount_of_data, 7);
+                            break;
+                        case 8:
+                            Sorting(d, amount_of_data, 8);
+                            break;
+                        case 9:
+                            Sorting(d, amount_of_data, 9);
+                            break;
+                    }
                 }
                 else{
                     cout << "Список студентов пуст!"<< endl;
@@ -372,9 +520,6 @@ int main(){
             default:
                 cout << "Неверно выбранная опция, попробуйте еще раз!" << endl;
                 Menu();
-
-
-
         }
     }
 
